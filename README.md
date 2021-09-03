@@ -1,4 +1,3 @@
-1 Abstract
 Our aim was to create a web application to visualize different characterstics of FIFA-2020 dataset.The
 project provides an easy to use interface which helps the users to display the number of players
 according to their country on the world map. Although the display alone is not enough and there
@@ -10,6 +9,7 @@ kind of template. All the charts are created from using Google chart Javascript.
 
 2 Introduction
 2.1 Application Domain
+
 The project is specifically targeting the audience who are enthusiast to know even subtle information
 about football. Although visualizations are made taking into account the various aspects of
 only football game, this website can be extended to several other domains as well due to its ease of
@@ -18,6 +18,7 @@ depends on the data being used for displaying the visualization.
 ![image](https://user-images.githubusercontent.com/13495458/131979548-749c0f5e-45a1-40af-a522-a7a5142dcfa5.png)
 
 2.2 Questions of Interest with their answers
+
  To know the regions where football is more popular.We have developed an GeoChart visualization
 with map where user can directly visualise which region has more number of players
 according to the color density on map (dark green color means more dense area for number
