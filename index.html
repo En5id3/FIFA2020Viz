@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    <title>Title Change</title>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="./temperature.js"></script>
+</head>
+<body onload="/sap" method="GET">
+		<h1>/index Hello</h1>
+<label for="City">Choose a car:</label>
+
+<select id="City">
+  <option value="BC">Vancover</option>
+  <option value="ON">Toronto</option>
+  <option value="QC">Montreal</option>
+</select>
+
+<br>
+<br>
+<h1> G-Space</h1>
+<label for="start">Start date:</label>
+<input type="date" id="start" name="trip-start"
+       value="2018-07-22"
+       min="2018-01-01" max="2018-12-31">
+
+<label for="end">End date:</label>
+
+<input type="date" id="end" name="trip-start"
+       value="2018-07-22"
+       min="2018-01-01" max="2018-12-31">
+
+  <button type="submit" value="Submit" onclick="Hello()">Submit</button>
+
+</body>
+</html>

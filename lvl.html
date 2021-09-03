@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    <title>Title Change</title>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="./temperature.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+    var options = {potential :'potential',
+                  'width':400,
+                     'height':300
+                  };
+    var dimension = "value_eur";
+    // Load the Visualization API and the piechart package.
+    google.charts.load('current', {'packages':['corechart']});
+    // Set a callback to run when the Google Visualization API is loaded.
+    google.charts.setOnLoadCallback(drawChart);
+
+
+    function drawChart() {
+      $.ajax({
+          url: "http://localhost:8080/sap",
+          dataType: "JSON"
+        }).done(function(data) {
+                console.log(data);
+                var finalData = data.replace(/\\/g,"");
+                //console.log(finalData);
+                //console.log(finalData);
+                var statesArray = [["potential",dimension]];
+                //console.log(statesArray);
+                $.each(JSON.parse(finalData), function(index, element) {
+                    console.log(index, element);  
+                    var stateitem = [this.potential, this[dimension]];
+                    statesArray.push(stateitem);
+                });
+                console.log(statesArray) ; 
+
+            var options = {
+          title: 'Value of Players wrt Potential Rating (Players have age < 25)',
+          legend: { position: 'none' },
+          histogram: { lastBucketPercentile: 5 },
+           hAxis: {title: 'Potential of the player'},
+        vAxis: {title: 'Total value of players at the club '},
+        'width':1000,
+        'height':1000
+        };
+    var statesData = google.visualization.arrayToDataTable(statesArray);
+    var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+    chart.draw(statesData, options);
+
+              });
+      // console.log(finalData);          
+      // Create our data table out of JSON data loaded from server.
+      
+
+
+      // var data = new google.visualization.arrayToDataTable(finalData);
+}
+
+
+
+
+    </script>
+<style>
+         .button {
+         background-color: #1c87c9;
+         border: none;
+         color: white;
+         padding: 20px 34px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 20px;
+         margin: 4px 2px;
+         cursor: pointer;
+         }
+      </style>
+</head>
+<body>
+
+    <div id="curve_chart"></div>
+
+<!-- <div class="mypanel"> </div>
+<form id ="myForm" onload="sap" method="get">
+  <p>Select the league 1  :</p>
+  <input type="radio" id="nation1" name="nation1" value="Spain">
+  <label for="spain">Spain</label><br>
+  <input type="radio" id="England" name="nation1" value="England">
+  <label for="England">England</label><br>
+  <input type="radio" id="Germany" name="nation1" value="Germany">
+  <label for="Germany">Germany</label><br>
+   <input type="radio" id="France" name="nation1" value="France">
+  <label for="France">France</label><br>
+  <input type="radio" id="Italy" name="nation1" value="Italy">
+  <label for="Italy">Italy</label><br>
+  <input type="radio" id="other" name="nation1" value="other">
+  <label for="other">Other</label>
+
+  <p>Select the league 2 :</p>
+  <input type="radio" id="nation1" name="nation2" value="Spain">
+  <label for="spain">Spain</label><br>
+  <input type="radio" id="England" name="nation2" value="England">
+  <label for="England">England</label><br>
+  <input type="radio" id="Germany" name="nation2" value="Germany">
+  <label for="Germany">Germany</label><br >
+   <input type="radio" id="France" name="nation2" value="France">
+  <label for="France">France</label><br>
+  <input type="radio" id="Italy" name="nation2" value="Italy">
+  <label for="Italy">Italy</label><br>
+ -->
+    <div id="curve_chart" style="width: 1000px; height: 1000px"></div>
+
+    <br>
+    <br>
+    <button class="button" onclick="window.location.href = '/gc';">Si Go Back!</button>
+
+<!-- <button type="submit">Click Me L!</button>
+
+</form>
+
+  <script>
+  function myFunction() {
+    document.getElementById("myForm").submit();
+  }
+  </script>
+ -->
+
+</body>
+</html>

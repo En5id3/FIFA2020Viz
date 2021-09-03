@@ -1,0 +1,54 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+        <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="./temperature.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+
+        var dimension = "age";
+        //var data = google.visualization.arrayToDataTable([
+        $.ajax({
+          url: "http://localhost:8080/scatter",
+          dataType: "JSON"
+        }).done(function(data) {
+                var finalData = data.replace(/\\/g, "");
+                //console.log(finalData);
+                //console.log(finalData);
+                var statesArray = [[dimension, "overall"]];
+                //console.log(statesArray);
+                $.each(JSON.parse(finalData), function(index, element) {
+                    console.log(index, element);
+                    var stateitem = [ this[dimension] , this.overall];
+                    statesArray.push(stateitem);
+                });
+                console.log(statesArray) ; 
+        var data = google.visualization.arrayToDataTable(statesArray);
+
+        var options = {
+          title: 'Age vs. Overall  comparison',
+          hAxis: {title: 'Age', minValue: 18, maxValue: 40},
+          vAxis: {title: 'Overall', minValue: 75, maxValue: 100},
+          legend: 'none'
+        };
+
+        var chart = new google.visualization.ScatterChart(document.getElementById('piechart'));
+
+        chart.draw(data, options);
+        });
+
+      }
+    </script>
+  </head>
+  <body>
+    <div id="piechart" style="width: 900px; height: 500px;"></div>
+  </body>
+</html>

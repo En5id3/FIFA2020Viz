@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+ 
+<head>
+    <title>Title Change</title>
+    <script src="https://d3js.org/d3.v5.js"></script>
+        <script src="./temperature.js"></script>
+</head>
+<body>
+<form>
+  <p>Select the league 1  :</p>
+  <input type="radio" id="nation1" name="nation1" value="Spain">
+  <label for="spain">Spain</label><br>
+  <input type="radio" id="England" name="nation1" value="England">
+  <label for="England">England</label><br>
+  <input type="radio" id="Germany" name="nation1" value="Germany">
+  <label for="Germany">Germany</label><br>
+   <input type="radio" id="France" name="nation1" value="France">
+  <label for="France">France</label><br>
+  <input type="radio" id="Italy" name="nation1" value="Italy">
+  <label for="Italy">Italy</label><br>
+  <input type="radio" id="other" name="nation1" value="other">
+  <label for="other">Other</label>
+
+  <p>Select the league 2 :</p>
+  <input type="radio" id="nation1" name="nation2" value="Spain">
+  <label for="spain">Spain</label><br>
+  <input type="radio" id="England" name="nation2" value="England">
+  <label for="England">England</label><br>
+  <input type="radio" id="Germany" name="nation2" value="Germany">
+  <label for="Germany">Germany</label><br >
+   <input type="radio" id="France" name="nation2" value="France">
+  <label for="France">France</label><br>
+  <input type="radio" id="Italy" name="nation2" value="Italy">
+  <label for="Italy">Italy</label><br>
+</form>
+</body>
+</html>

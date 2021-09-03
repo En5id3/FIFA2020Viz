@@ -1,0 +1,78 @@
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script src="https://d3js.org/d3.v5.js"></script>
+    <script src="./temperature.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+
+
+
+
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load("current", {packages:["corechart"]});
+      google.charts.setOnLoadCallback(drawChart);
+      function drawChart() {
+        var dimension = "age";
+        //var data = google.visualization.arrayToDataTable([
+        $.ajax({
+          url: "http://localhost:8080/bar",
+          dataType: "JSON"
+        }).done(function(data) {
+                var finalData = data.replace(/\\/g, "");
+                //console.log(finalData);
+                //console.log(finalData);
+                var statesArray = [["wage_eur",dimension]];
+                //console.log(statesArray);
+                $.each(JSON.parse(finalData), function(index, element) {
+                    console.log(index, element);
+                    var stateitem = [this.wage_eur, this[dimension]];
+                    statesArray.push(stateitem);
+                });
+                console.log(statesArray) ; 
+
+
+        var data = google.visualization.arrayToDataTable(statesArray);
+        
+        //var options = {};
+        var options = {
+          title: 'Wages of Players',
+          legend: { position: 'none' },
+          histogram: { lastBucketPercentile: 5 },
+
+        };
+
+        var chart = new google.visualization.Histogram(document.getElementById('chart_div'));
+        chart.draw(data, options);
+              });
+      }
+    </script>
+
+
+<style>
+         .button {
+         background-color: #1c87c9;
+         border: none;
+         color: white;
+         padding: 20px 34px;
+         text-align: center;
+         text-decoration: none;
+         display: inline-block;
+         font-size: 20px;
+         margin: 4px 2px;
+         cursor: pointer;
+         }
+      </style>
+
+  </head>
+  <body>
+    <div id="chart_div" style="width: 900px; height: 500px;"></div>
+        <br>
+    <br>
+    <button class="button" onclick="window.location.href = '/gc';">Si Go Back!</button>
+
+
+  </body>
+</html>
